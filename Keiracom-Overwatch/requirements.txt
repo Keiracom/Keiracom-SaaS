@@ -1,6 +1,6 @@
 streamlit
 xero-python
-paddle
+requests
 jinja2
 pdfkit
 python-dotenv

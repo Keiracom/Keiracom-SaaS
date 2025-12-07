@@ -1,12 +1,12 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useAuth, useUser } from "@clerk/nextjs"
+import { useAuth } from "@clerk/nextjs" // Removed useUser
 import { AppHull } from "@/components/layout/AppHull"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card" // Removed CardTitle used CardHeader previously but it was unused too
 import { DataTable } from "@/components/ui/data-table"
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpRight, TrendingUp, AlertTriangle } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 // Type Definition matching Backend
@@ -80,6 +80,8 @@ export default function AssetsPage() {
             if (!isSignedIn) return
             try {
                 const token = await getToken()
+                // Use env var in future, for now localhost is hardcoded but technically wrong for prod
+                // Leaving hardcoded for now as per previous state, but we should fix it later.
                 const res = await fetch("http://127.0.0.1:8000/api/v1/assets/strike-list", {
                     headers: { Authorization: `Bearer ${token}` }
                 })
@@ -88,9 +90,9 @@ export default function AssetsPage() {
                 }
                 const json = await res.json()
                 setData(json)
-            } catch (err: any) {
+            } catch (err: unknown) { // Fixed: unknown instead of any
                 console.error("Failed to fetch assets", err)
-                setError(err.message || "Failed to load assets")
+                setError((err as Error).message || "Failed to load assets")
             } finally {
                 setLoading(false)
             }

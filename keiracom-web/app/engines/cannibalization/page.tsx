@@ -6,7 +6,7 @@ import { AppHull } from "@/components/layout/AppHull"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { DataTable } from "@/components/ui/data-table"
 import { ColumnDef } from "@tanstack/react-table"
-import { AlertTriangle, ArrowRight, Swords } from "lucide-react"
+import { ArrowRight, Swords } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
@@ -106,7 +106,7 @@ export default function CannibalizationPage() {
                     <div>
                         <h1 className="text-3xl font-bold tracking-tight text-white mb-1">Cannibalization Resolver</h1>
                         <p className="text-[#666666]">
-                            "The Highlander Protocol". <span className="text-red-500">Eliminate internal competition.</span>
+                            &quot;The Highlander Protocol&quot;. <span className="text-red-500">Eliminate internal competition.</span>
                         </p>
                     </div>
                     <Button

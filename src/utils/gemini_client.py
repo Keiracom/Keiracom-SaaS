@@ -7,9 +7,9 @@ class GeminiAgent:
         self.model_name = model_name
         self.model = None
 
-        api_key = settings.GEMINI_API_KEY
+        api_key = settings.GOOGLE_API_KEY.get_secret_value() if settings.GOOGLE_API_KEY else None
         if not api_key:
-            raise ValueError("GEMINI_API_KEY is not set in environment variables.")
+            raise ValueError("GOOGLE_API_KEY is not set in environment variables.")
         
         try:
             genai.configure(api_key=api_key)

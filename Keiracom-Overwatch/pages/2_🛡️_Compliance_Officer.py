@@ -8,8 +8,8 @@ st.set_page_config(page_title="Compliance Officer", page_icon="🛡️", layout=
 st.markdown("# 🛡️ Compliance Officer")
 st.write("Automated Reconciliation and Compliance Checks")
 
-st.markdown("### 🔄 The Feeder (Stripe -> Xero)")
-st.caption("Syncs yesterday's paid Stripe charges to Xero as Authorised Invoices.")
+st.markdown("### 🔄 The Feeder (Paddle -> Xero)")
+st.caption("Syncs yesterday's paid Paddle transactions to Xero as Authorised Invoices.")
 
 if st.button("Run Feeder Manual Sync"):
     with st.spinner("Running Feeder Logic..."):

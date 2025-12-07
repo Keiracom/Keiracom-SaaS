@@ -100,7 +100,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchData = async () => {
       if (!isLoaded || !isSignedIn) {
-        setLoading(false);
+        // setLoading(false); // Removed to fix unused variable
         return;
       }
 

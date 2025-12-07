@@ -20,54 +20,7 @@ Logic Overview:
 import asyncio
 import re
 from prefect import flow, task
-
-# --- Mock Clients for Development ---
-
-class MockGeminiClient:
-    """Mocks the Gemini AI client for nudge generation tasks."""
-    def __init__(self):
-        print("MockGeminiClient initialized.")
-
-    async def generate_text(self, prompt: str) -> str:
-        """Simulates a call to the Gemini API to generate a nudge."""
-        print("\n--- Task: Crafting Nudge (Mock Gemini) ---")
-        print(f"Received Prompt:\n'''{prompt}'''")
-        await asyncio.sleep(0.5)
-
-        if "JSON-LD FAQ schema" in prompt:
-            return """
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [{
-    "@type": "Question",
-    "name": "What is considered a dental emergency?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Any dental issue that requires immediate attention to save a tooth, stop ongoing bleeding, or alleviate severe pain is an emergency. This includes abscesses, knocked-out teeth, and severe toothaches."
-    }
-  },{
-    "@type": "Question",
-    "name": "How much does an emergency dental visit cost?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "The cost varies depending on the necessary treatment. We provide a full cost estimate before any procedure begins."
-    }
-  }]
-}
-```
-"""
-        elif "extend an article" in prompt:
-            return """
-**H2: Common Signs Your Home Has a Hidden Water Leak**
-*   An unexpected and significant increase in your water bill.
-*   The persistent sound of running water when all faucets are off.
-*   Musty smells or visible mold growth on walls, ceilings, or floors.
-*   Damp spots or discoloration appearing on drywall.
-*   A water meter dial that spins even when you're not using any water.
-"""
-        return "Unrecognized prompt for nudge generation."
+from src.utils.gemini_client import gemini_agent, GeminiAgent
 
 # --- Helper for Mock Data ---
 
@@ -126,13 +79,13 @@ def diagnose_ranking_gap(victim: dict) -> tuple[str, dict]:
     if victim_wc < (comp_data['competitor_avg_word_count'] - 500):
         return 'CONTENT_THIN', victim
     # Priority 3: Title Gap (Vector C)
-    if not all(re.search(r'\b' + re.escape(word) + r'\b', victim_h1, re.IGNORECASE) for word in term.split()):
+    if not all(re.search(r'\\b' + re.escape(word) + r'\\b', victim_h1, re.IGNORECASE) for word in term.split()):
         return 'TITLE_MISMATCH', victim
         
     return 'NO_GAP_FOUND', victim
 
 @task
-async def craft_nudge(gap_info: tuple[str, dict], client: MockGeminiClient) -> str:
+async def craft_nudge(gap_info: tuple[str, dict], agent: GeminiAgent) -> str:
     """Uses Gemini to craft a nudge based on the diagnosed gap."""
     gap_type, victim = gap_info
     term = victim['term']
@@ -144,7 +97,7 @@ async def craft_nudge(gap_info: tuple[str, dict], client: MockGeminiClient) -> s
     else:
         return f"// No nudge action defined for GapType '{gap_type}'."
         
-    return await client.generate_text(prompt)
+    return await agent.generate_content(prompt)
 
 # --- Main Prefect Flow ---
 
@@ -152,7 +105,9 @@ async def craft_nudge(gap_info: tuple[str, dict], client: MockGeminiClient) -> s
 async def strike_distance_flow(user_domain: str, location_code: str = "1023191"):
     """Orchestrates the Strike Distance Sniper engine with detailed diagnosis."""
     print(f"--- Starting Engine 3: Strike Distance Flow (V2) for '{user_domain}' ---")
-    ai_client = MockGeminiClient()
+    
+    # Use the real Gemini agent
+    ai_agent = gemini_agent
     
     rankings = fetch_user_rankings(user_domain, location_code)
     strike_zone_victims = filter_strike_zone(rankings)
@@ -162,18 +117,18 @@ async def strike_distance_flow(user_domain: str, location_code: str = "1023191")
         return
         
     top_victim = strike_zone_victims[0]
-    print(f"\n[ATTACK PLAN] Focusing on highest impact target: '{top_victim['term']}' (Rank: {top_victim['rank']}).")
+    print(f"\\n[ATTACK PLAN] Focusing on highest impact target: '{top_victim['term']}' (Rank: {top_victim['rank']}).")
     
     gap_type, victim = diagnose_ranking_gap(top_victim)
     print(f"Diagnosis Result: '{gap_type}'")
     
     if gap_type != 'NO_GAP_FOUND':
-        nudge = await craft_nudge((gap_type, victim), ai_client)
-        print("\n--- FINAL OUTPUT: ACTIONABLE NUDGE ---")
+        nudge = await craft_nudge((gap_type, victim), ai_agent)
+        print("\\n--- FINAL OUTPUT: ACTIONABLE NUDGE (REAL AI) ---")
         print(nudge)
         print("-----------------------------------")
     else:
-        print("\n--- No actionable gap found for the top victim. ---")
+        print("\\n--- No actionable gap found for the top victim. ---")
     
     print("--- Strike Distance Flow Finished ---")
 

@@ -107,9 +107,9 @@ export default function LandingPage() {
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-20 max-w-3xl mx-auto">
                         <h2 className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-3">The Core Difference</h2>
-                        <h3 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">Don't hire a Mechanic.<br />Hire an Asset Manager.</h3>
+                        <h3 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">Don&apos;t hire a Mechanic.<br />Hire an Asset Manager.</h3>
                         <p className="text-xl text-slate-600 text-balance mb-8">
-                            Most tools act like <strong>Mechanics</strong>: they fix 500 random "errors" that generate $0.
+                            Most tools act like <strong>Mechanics</strong>: they fix 500 random &quot;errors&quot; that generate $0.
                             <br className="hidden md:block" />
                             Keiracom acts like a <strong>Hedge Fund</strong>: we ignore 90% of the noise to focus on the <strong>High-Yield Assets</strong> that actually drive revenue.
                         </p>
@@ -126,7 +126,7 @@ export default function LandingPage() {
                                 </div>
                                 <h3 className="text-2xl font-bold text-slate-900 mb-2">Value Shield</h3>
                                 <p className="text-slate-600 leading-relaxed mb-6">
-                                    We watch your high-CPC pages like a financial asset. If rankings dip on a "money keyword", you lose equivalent ad spend. We alert you immediately with a fix.
+                                    We watch your high-CPC pages like a financial asset. If rankings dip on a &quot;money keyword&quot;, you lose equivalent ad spend. We alert you immediately with a fix.
                                 </p>
                             </div>
                             <div className="bg-white border ./border-slate-100 rounded-lg p-4 shadow-sm">
@@ -166,7 +166,7 @@ export default function LandingPage() {
                             </div>
                             <h3 className="text-xl font-bold text-slate-900 mb-2">Content Refreshing</h3>
                             <p className="text-slate-600 text-sm">
-                                Content decays. We flag posts &gt;18mo old that are losing relevance and prescribe a "Skyscraper" refresh.
+                                Content decays. We flag posts &gt;18mo old that are losing relevance and prescribe a &quot;Skyscraper&quot; refresh.
                             </p>
                         </div>
 
@@ -188,7 +188,7 @@ export default function LandingPage() {
                             </div>
                             <h3 className="text-lg font-bold text-slate-900 mb-1">Topical Authority</h3>
                             <p className="text-slate-500 text-xs leading-relaxed">
-                                Fill "missing nodes" in your topic graph that competitors cover.
+                                Fill &quot;missing nodes&quot; in your topic graph that competitors cover.
                             </p>
                         </div>
 
@@ -217,7 +217,7 @@ export default function LandingPage() {
                     <div className="grid gap-8">
                         {reviews.map((review, i) => (
                             <div key={i} className="glass-card p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-start">
-                                <div className="text-6xl text-blue-100 font-serif -mt-4">"</div>
+                                <div className="text-6xl text-blue-100 font-serif -mt-4">&quot;</div>
                                 <div>
                                     <p className="text-lg text-slate-700 italic mb-6 leading-relaxed">
                                         {review.content}
@@ -297,11 +297,11 @@ export default function LandingPage() {
                                 </div>
                                 <div className="flex items-center gap-3 text-slate-700 text-sm">
                                     <div className="w-6 h-6 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0"><Check className="w-3 h-3" /></div>
-                                    <span>Basic "Value Shield"</span>
+                                    <span>Basic &quot;Value Shield&quot;</span>
                                 </div>
                                 <div className="flex items-center gap-3 text-slate-700 text-sm">
                                     <div className="w-6 h-6 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0"><Check className="w-3 h-3" /></div>
-                                    <span>Weekly "Refresh" Briefs</span>
+                                    <span>Weekly &quot;Refresh&quot; Briefs</span>
                                 </div>
                             </div>
                             <Button variant="outline" className="w-full border-slate-200 hover:bg-slate-50 text-slate-900 h-12">Select Plan</Button>
@@ -325,7 +325,7 @@ export default function LandingPage() {
                                 </div>
                                 <div className="flex items-center gap-3 text-slate-700 text-sm font-medium">
                                     <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center flex-shrink-0"><Check className="w-3 h-3" /></div>
-                                    <span>"Quick Wins" (Page 2 &rarr; 1)</span>
+                                    <span>&quot;Quick Wins&quot; (Page 2 &rarr; 1)</span>
                                 </div>
                                 <div className="flex items-center gap-3 text-slate-700 text-sm">
                                     <div className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0"><Check className="w-3 h-3" /></div>
@@ -354,11 +354,11 @@ export default function LandingPage() {
                                 </div>
                                 <div className="flex items-center gap-3 text-slate-700 text-sm">
                                     <div className="w-6 h-6 rounded-full bg-slate-100 text-slate-800 flex items-center justify-center flex-shrink-0"><Check className="w-3 h-3" /></div>
-                                    <span>Full "Cannibalization" Audit</span>
+                                    <span>Full &quot;Cannibalization&quot; Audit</span>
                                 </div>
                                 <div className="flex items-center gap-3 text-slate-700 text-sm">
                                     <div className="w-6 h-6 rounded-full bg-slate-100 text-slate-800 flex items-center justify-center flex-shrink-0"><Check className="w-3 h-3" /></div>
-                                    <span>"Snippet Optimization"</span>
+                                    <span>&quot;Snippet Optimization&quot;</span>
                                 </div>
                                 <div className="flex items-center gap-3 text-slate-700 text-sm">
                                     <div className="w-6 h-6 rounded-full bg-slate-100 text-slate-800 flex items-center justify-center flex-shrink-0"><Check className="w-3 h-3" /></div>
