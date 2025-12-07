@@ -1,0 +1,16 @@
+prefect>=3.0
+google-generativeai
+sqlalchemy[asyncio]
+asyncpg
+pydantic-settings
+fastapi
+uvicorn
+python-dotenv
+pandas
+tenacity
+httpx
+psycopg2-binary
+aiosqlite
+pydantic
+pyjwt[crypto]
+cryptography

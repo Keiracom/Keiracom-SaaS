@@ -1,0 +1,52 @@
+[
+  {
+    "keyword": "SaaS SEO Agency",
+    "target_url": "https://keiracom.com/saas-seo",
+    "search_volume": 5000,
+    "current_rank": 12,
+    "difficulty": 65,
+    "cpc": 12.50,
+    "yes_score": 88.5,
+    "engine_source": "manual"
+  },
+  {
+    "keyword": "B2B SaaS marketing strategies",
+    "target_url": "https://keiracom.com/blog/b2b-strategies",
+    "search_volume": 2500,
+    "current_rank": 15,
+    "difficulty": 70,
+    "cpc": 8.20,
+    "yes_score": 75.2,
+    "engine_source": "manual"
+  },
+  {
+    "keyword": "enterprise seo platform",
+    "target_url": "https://keiracom.com/platform",
+    "search_volume": 1500,
+    "current_rank": 18,
+    "difficulty": 75,
+    "cpc": 25.00,
+    "yes_score": 65.8,
+    "engine_source": "manual"
+  },
+  {
+    "keyword": "best seo tools for saas",
+    "target_url": "https://keiracom.com/blog/tools",
+    "search_volume": 3000,
+    "current_rank": 11,
+    "difficulty": 60,
+    "cpc": 5.50,
+    "yes_score": 92.1,
+    "engine_source": "manual"
+  },
+  {
+    "keyword": "how to market a saas product",
+    "target_url": "https://keiracom.com/blog/marketing-guide",
+    "search_volume": 4000,
+    "current_rank": 19,
+    "difficulty": 80,
+    "cpc": 10.00,
+    "yes_score": 70.0,
+    "engine_source": "manual"
+  }
+]

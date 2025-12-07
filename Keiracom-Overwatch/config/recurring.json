@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Apollo",
+        "amount": 99.00,
+        "frequency": "monthly"
+    },
+    {
+        "name": "Instantly",
+        "amount": 49.00,
+        "frequency": "monthly"
+    }
+]

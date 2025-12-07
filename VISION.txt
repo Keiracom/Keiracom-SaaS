@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keiracom v3.0 // TERMINAL VISION</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        keira: {
+                            black: '#050505',
+                            dark: '#0A0A0A',
+                            panel: '#111111',
+                            green: '#00FF41',
+                            red: '#FF3333',
+                            gray: '#333333',
+                            dim: '#666666'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: #00FF41; }
+        .neon-border { box-shadow: 0 0 5px rgba(0, 255, 65, 0.2); }
+        .scrolling-text { animation: scroll 20s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111; }
+        ::-webkit-scrollbar-thumb { background: #333; }
+        ::-webkit-scrollbar-thumb:hover { background: #00FF41; }
+    </style>
+</head>
+<body class="h-screen flex flex-col font-mono overflow-hidden selection:bg-keira-green selection:text-black">
+
+    <header class="border-b border-keira-gray bg-keira-dark">
+        <div class="flex justify-between items-center px-4 py-2 text-xs uppercase tracking-widest">
+            <div class="flex items-center gap-4">
+                <span class="font-bold text-lg tracking-tighter">KEIRACOM <span class="text-white">v3.0</span></span>
+                <span class="bg-keira-green text-black px-2 py-0.5 font-bold rounded-sm">ONLINE</span>
+                <span class="text-keira-dim">|</span>
+                <span class="text-white">MODE: <span class="text-keira-green">GLOBAL (TOP 10)</span></span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="animate-pulse">● LIVE DATA FEED</span>
+                <button class="border border-keira-red text-keira-red px-3 py-1 hover:bg-keira-red hover:text-black transition-colors">
+                    [TAKE CONTROL]
+                </button>
+            </div>
+        </div>
+        <div class="bg-black border-t border-b border-keira-gray overflow-hidden py-1 text-xs whitespace-nowrap opacity-80">
+            <div class="scrolling-text inline-block">
+                [ DRIPITY.COM: 76,511 ] &nbsp;//&nbsp; [ YIELD: $187,452 (+4.2%) ] &nbsp;//&nbsp; [ VOLATILITY: LOW ] &nbsp;//&nbsp; [ NEW OPPS: 15 DETECTED ] &nbsp;//&nbsp; [ ENGINE 3: ACTIVE ] &nbsp;//&nbsp; [ ENGINE 5: IDLE ] &nbsp;//&nbsp; [ CRAWL BUDGET: 85% ]
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 grid grid-cols-12 gap-0 divide-x divide-keira-gray">
+        
+        <aside class="col-span-2 bg-keira-panel flex flex-col">
+            <div class="p-3 border-b border-keira-gray text-xs text-keira-dim uppercase">Active Protocols</div>
+            <div class="flex-1 overflow-y-auto">
+                <div class="p-4 border-b border-keira-gray hover:bg-keira-gray/20 cursor-pointer group">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-bold text-white group-hover:text-keira-green">01. REVENUE SHIELD</span>
+                        <span class="text-keira-green">●</span>
+                    </div>
+                    <div class="text-xs text-keira-dim">Yield Optimization</div>
+                    <div class="text-xs mt-2 text-white">Status: <span class="text-keira-green">OPTIMIZED</span></div>
+                </div>
+                <div class="p-4 border-b border-keira-gray hover:bg-keira-gray/20 cursor-pointer opacity-50">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-bold text-white">02. FRESHNESS ATTACK</span>
+                        <span class="text-keira-dim">○</span>
+                    </div>
+                    <div class="text-xs text-keira-dim">Content Skyscraper</div>
+                </div>
+                <div class="p-4 border-b border-keira-gray bg-keira-gray/30 border-l-4 border-l-keira-green cursor-pointer">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-bold text-keira-green">03. STRIKE DISTANCE</span>
+                        <span class="text-keira-green animate-pulse">⚡ RUNNING</span>
+                    </div>
+                    <div class="text-xs text-white">Page 1 Accelerator</div>
+                    <div class="mt-2 w-full bg-keira-gray h-1 rounded-full overflow-hidden">
+                        <div class="bg-keira-green h-full w-2/3"></div>
+                    </div>
+                </div>
+                <div class="p-4 border-b border-keira-gray hover:bg-keira-gray/20 cursor-pointer opacity-50">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-bold text-white">04. AUTHORITY ARCHITECT</span>
+                        <span class="text-keira-red">● WAIT</span>
+                    </div>
+                    <div class="text-xs text-keira-dim">Gap Analysis</div>
+                </div>
+                 <div class="p-4 border-b border-keira-gray hover:bg-keira-gray/20 cursor-pointer opacity-50">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-bold text-white">05. CANNIBALIZATION</span>
+                        <span class="text-keira-green">●</span>
+                    </div>
+                    <div class="text-xs text-keira-dim">Conflict Resolver</div>
+                </div>
+            </div>
+        </aside>
+
+        <section class="col-span-7 bg-black flex flex-col">
+            <div class="grid grid-cols-3 divide-x divide-keira-gray border-b border-keira-gray h-32">
+                <div class="p-6">
+                    <div class="text-xs text-keira-dim uppercase mb-2">Portfolio Yield</div>
+                    <div class="text-4xl text-white font-bold">$187,452</div>
+                    <div class="text-xs text-keira-green mt-1">▲ 4.2% this week</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-xs text-keira-dim uppercase mb-2">Active Assets</div>
+                    <div class="text-4xl text-white font-bold">612</div>
+                    <div class="text-xs text-keira-dim mt-1">12 Pending Indexing</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-xs text-keira-dim uppercase mb-2">Strike Zone (11-20)</div>
+                    <div class="text-4xl text-keira-green font-bold">15</div>
+                    <div class="text-xs text-white mt-1">High-Value Targets</div>
+                </div>
+            </div>
+
+            <div class="flex-1 p-6 overflow-hidden flex flex-col">
+                <div class="flex justify-between items-end mb-4">
+                    <div>
+                        <h2 class="text-xl text-white font-bold">/// ENGINE 03 OUTPUT: STRIKE DISTANCE</h2>
+                        <p class="text-xs text-keira-dim">Displaying keywords ranking #11-20 with high commercial intent.</p>
+                    </div>
+                    <button class="bg-keira-green text-black text-xs font-bold px-4 py-2 hover:bg-white transition-colors">
+                        GENERATE CONTENT BRIEFS (15)
+                    </button>
+                </div>
+
+                <div class="border border-keira-gray rounded-sm overflow-hidden flex-1">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-keira-panel text-xs uppercase text-keira-dim border-b border-keira-gray">
+                            <tr>
+                                <th class="p-3 font-normal">Target Keyword</th>
+                                <th class="p-3 font-normal">Current Rank</th>
+                                <th class="p-3 font-normal">Volume</th>
+                                <th class="p-3 font-normal">Diff %</th>
+                                <th class="p-3 font-normal">URL</th>
+                                <th class="p-3 font-normal text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-keira-gray text-white">
+                            <tr class="hover:bg-keira-gray/20 transition-colors">
+                                <td class="p-3 font-bold text-keira-green">linkedin automation tools</td>
+                                <td class="p-3">#12</td>
+                                <td class="p-3">12,500</td>
+                                <td class="p-3 text-keira-red">65%</td>
+                                <td class="p-3 text-xs text-keira-dim truncate max-w-[150px]">/blog/best-tools-2025</td>
+                                <td class="p-3 text-right"><span class="border border-keira-green text-keira-green text-[10px] px-2 py-0.5">DEPLOY BRIEF</span></td>
+                            </tr>
+                            <tr class="hover:bg-keira-gray/20 transition-colors">
+                                <td class="p-3 font-bold text-keira-green">cold email software</td>
+                                <td class="p-3">#14</td>
+                                <td class="p-3">8,100</td>
+                                <td class="p-3 text-yellow-500">45%</td>
+                                <td class="p-3 text-xs text-keira-dim truncate max-w-[150px]">/features/email-sender</td>
+                                <td class="p-3 text-right"><span class="border border-keira-green text-keira-green text-[10px] px-2 py-0.5">DEPLOY BRIEF</span></td>
+                            </tr>
+                            <tr class="hover:bg-keira-gray/20 transition-colors">
+                                <td class="p-3 font-bold text-keira-green">marketing agency kpis</td>
+                                <td class="p-3">#18</td>
+                                <td class="p-3">2,400</td>
+                                <td class="p-3 text-keira-green">25%</td>
+                                <td class="p-3 text-xs text-keira-dim truncate max-w-[150px]">/resources/agency-guide</td>
+                                <td class="p-3 text-right"><span class="border border-keira-green text-keira-green text-[10px] px-2 py-0.5">DEPLOY BRIEF</span></td>
+                            </tr>
+                             <tr class="hover:bg-keira-gray/20 transition-colors">
+                                <td class="p-3 font-bold text-keira-green">saas pricing models</td>
+                                <td class="p-3">#11</td>
+                                <td class="p-3">5,600</td>
+                                <td class="p-3 text-yellow-500">55%</td>
+                                <td class="p-3 text-xs text-keira-dim truncate max-w-[150px]">/blog/saas-pricing</td>
+                                <td class="p-3 text-right"><span class="border border-keira-green text-keira-green text-[10px] px-2 py-0.5">DEPLOY BRIEF</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <aside class="col-span-3 bg-keira-black flex flex-col text-xs">
+            <div class="p-3 border-b border-keira-gray text-keira-dim uppercase">System Terminal</div>
+            <div class="flex-1 p-4 font-mono space-y-2 overflow-y-auto text-keira-dim">
+                <div><span class="text-white">15:14:02</span> > Initializing Engine 3...</div>
+                <div><span class="text-white">15:14:05</span> > Fetching GSC Data [dripify.com]</div>
+                <div><span class="text-white">15:14:08</span> > <span class="text-keira-green">SUCCESS</span> Data received (24kb)</div>
+                <div><span class="text-white">15:14:09</span> > Filtering Rank 11-20...</div>
+                <div><span class="text-white">15:14:10</span> > Found 15 opportunities.</div>
+                <div><span class="text-white">15:14:11</span> > Calculating Difficulty Score...</div>
+                <div class="pl-2 border-l border-keira-dim">
+                    <div>Warning: "cold email" difficulty > 60</div>
+                    <div>Strategy: Recommendations updated</div>
+                </div>
+                <div><span class="text-white">15:14:15</span> > Waiting for user action...</div>
+                <div class="animate-pulse text-keira-green">_</div>
+            </div>
+            <div class="border-t border-keira-gray p-4">
+                <div class="text-keira-green mb-2 font-bold">GEMINI CO-PILOT</div>
+                <input type="text" placeholder="Command >" class="w-full bg-keira-panel border border-keira-gray p-2 text-white focus:outline-none focus:border-keira-green">
+            </div>
+        </aside>
+
+    </main>
+</body>
+</html>

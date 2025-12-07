@@ -1,0 +1,6 @@
+streamlit
+xero-python
+paddle
+jinja2
+pdfkit
+python-dotenv
