@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { TrendingUp, AlertTriangle, Search, Globe } from "lucide-react"
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, LineChart, Line, Cell, PieChart, Pie } from "recharts"
+import { AppHull } from "@/components/layout/AppHull"
 
 // --- Mock Data for UI Dev ---
 const gapData = [
