@@ -8,7 +8,7 @@
 | **Source Code** | ✅ DONE | Hosted on local/Git. Monorepo structure (Backend + `keiracom-web`). |
 | **Tech Stack** | ✅ DONE | Python 3.11 (FastAPI), Next.js 15, PostgreSQL, Prefect 3.0. |
 | **API** | ✅ DONE | FastAPI w/ Pydantic V2. Endpoints for Assets & IPO active. |
-| **Authentication** | 🚧 WIP | `@clerk/nextjs` installed. Full integration pending (Protecting Routes). |
+| **Authentication** | ✅ DONE | **Clerk** active. Keys configured. API & UI protected. |
 | **Background Jobs** | ✅ DONE | Prefect 3.0 Orchestration Engine active. |
 | **Image Optimization** | 🤷 N/A | Next.js `<Image />` component available but not heavily used yet. |
 | **Feedback Form** | 🔴 TODO | No in-app user feedback mechanism. |
@@ -26,7 +26,7 @@
 ## 3. Reliability & Monitoring (The "Debugging" Suite)
 | Item | Status | Keiracom Context |
 | :--- | :--- | :--- |
-| **Error Tracking** | 🔴 HIGH | **MISSING**. No Sentry/Roillbar. If app crashes, we only have console logs. |
+| **Error Tracking** | ✅ DONE | **Sentry** active. Backend & Frontend configured. |
 | **Logging** | 🚧 BASIC | `print`/`logging` to stdout. Need structured logging (JSON) for production. |
 | **APM (Performance)** | 🔴 TODO | No New Relic / Datadog. Blind to slow API requests. |
 | **Uptime Monitoring** | 🔴 TODO | No heartbeat checks (e.g. BetterStack/Pingdom). |
@@ -43,7 +43,7 @@
 | :--- | :--- | :--- |
 | **Secrets Mgmt** | ✅ DONE | Using `.env` via `python-dotenv`. |
 | **SSL/TLS** | 🤷 N/A | Handled by Vercel/Cloud provider in Prod. |
-| **API Security** | 🔴 TODO | JWT/OAuth pending (Clerk). APIs currently open/unprotected? |
+| **API Security** | ✅ DONE | JWT verification via Clerk (JWKS) implemented on core endpoints. |
 
 ## 6. Business & Compliance
 | Item | Status | Keiracom Context |
