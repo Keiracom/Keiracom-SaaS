@@ -21,29 +21,7 @@ import asyncio
 from prefect import flow, task
 from typing import List, Dict, Any
 import re
-
-# --- Mock Clients for Development ---
-
-class MockGeminiClient:
-    """Mocks the Gemini AI client for generating redirect code snippets."""
-    def __init__(self):
-        print("MockGeminiClient initialized.")
-
-    async def generate_text(self, prompt: str) -> str:
-        """Simulates a call to the Gemini API to generate an .htaccess rule."""
-        print("\n--- Task: Generating Redirect Code (Mock Gemini) ---")
-        print(f"Received Prompt:\n'''{prompt}'''")
-        await asyncio.sleep(0.5)
-
-        match = re.search(r"redirect (https://.*?) to (https://.*?)\.", prompt)
-        if match:
-            loser_url, winner_url = match.groups()
-            # For .htaccess, we typically use the path, not the full URL.
-            loser_path = "/" + "/".join(loser_url.split("/")[3:])
-            winner_path = "/" + "/".join(winner_url.split("/")[3:])
-            return f"Redirect 301 {loser_path} {winner_url}"
-        
-        return "# Error: Could not parse URLs from prompt."
+from src.utils.gemini_client import gemini_agent, GeminiAgent
 
 # --- Prefect Tasks ---
 
@@ -100,21 +78,29 @@ def judge_winner(conflict: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 @task
-async def generate_redirect_code(winner_url: str, loser_url: str, client: MockGeminiClient) -> str:
+async def generate_redirect_code(winner_url: str, loser_url: str, agent: GeminiAgent) -> str:
     """Generates a 301 redirect rule using the Gemini client."""
+    print(f"--- Task: Generating Redirect Code for {loser_url} -> {winner_url} ---")
+    
+    # We strip the domain for .htaccess usually, but let's ask Gemini to handle it professionally
     prompt = (
         f"Generate a standard Apache .htaccess 301 redirect rule to permanently redirect "
-        f"{loser_url} to {winner_url}. Return ONLY the redirect code snippet."
+        f"the old URL '{loser_url}' to the new URL '{winner_url}'. "
+        "Return ONLY the single line of code. Do not include markdown or explanations."
     )
-    return await client.generate_text(prompt)
+    # Using real Gemini Agent
+    response = await agent.generate_content(prompt)
+    return response.strip().replace("```", "").replace("apache", "").strip()
 
 # --- Main Prefect Flow ---
 
 @flow(name="Engine 5: Cannibalization Resolver", log_prints=True)
 async def cannibalization_resolver_flow(project_id: int):
     """Orchestrates the Highlander Protocol to resolve keyword cannibalization."""
-    print(f"--- Starting Engine 5: Cannibalization Resolver for project_id={project_id} ---")
-    ai_client = MockGeminiClient()
+    print(f"--- Starting Engine 5: Cannibalization Resolver (REAL AI) for project_id={project_id} ---")
+    
+    # Use real global agent
+    ai_agent = gemini_agent
 
     conflicts = find_conflicts(project_id)
     if not conflicts:
@@ -134,7 +120,7 @@ async def cannibalization_resolver_flow(project_id: int):
             redirect_code = await generate_redirect_code(
                 winner_url=winner['url'],
                 loser_url=loser['url'],
-                client=ai_client
+                agent=ai_agent
             )
             all_redirects.append({"term": conflict['term'], "rule": redirect_code})
 

@@ -19,34 +19,7 @@ The flow operates as follows:
 import asyncio
 from prefect import flow, task
 from typing import List, Dict, Any
-
-# --- Mock Clients for Development ---
-
-class MockGeminiClient:
-    """Mocks the Gemini AI client for generating optimized HTML."""
-    def __init__(self):
-        print("MockGeminiClient initialized.")
-
-    async def generate_text(self, prompt: str) -> str:
-        """Simulates a call to the Gemini API to generate an HTML snippet."""
-        print("\n--- Task: Rewriting Snippet with Gemini (Mock) ---")
-        print("Received a prompt for a structured HTML block...")
-        await asyncio.sleep(1)
-
-        # This mock returns a clean <ul> HTML block as requested by the prompt.
-        if "What is SEO" in prompt:
-            return """<ul>
-    <li><strong>Core Practice:</strong> SEO (Search Engine Optimization) is the process of improving a website to increase its visibility in organic search engine results.</li>
-    <li><strong>Primary Goal:</strong> To attract higher quality and quantity of traffic to a website without paying for ads.</li>
-    <li><strong>Key Areas:</strong> Involves technical site health, on-page content optimization, and off-page authority building (backlinks).</li>
-</ul>"""
-        elif "How do dental implants work" in prompt:
-            return """<ul>
-    <li><strong>Foundation:</strong> A titanium post is surgically placed into the jawbone, acting as a sturdy, artificial tooth root.</li>
-    <li><strong>Healing Process:</strong> Over several months, the jawbone fuses with the implant in a process called osseointegration, creating a durable base.</li>
-    <li><strong>Final Restoration:</strong> Once healed, a custom-made crown (the new tooth) is attached to the implant, restoring function and appearance.</li>
-</ul>"""
-        return "<ul><li>Error: Could not generate snippet for this term.</li></ul>"
+from src.utils.gemini_client import gemini_agent, GeminiAgent
 
 # --- Prefect Tasks ---
 
@@ -85,7 +58,7 @@ def analyze_snippet_format(opportunity: Dict[str, Any]) -> str:
     return "FORMAT_OK"
 
 @task
-async def rewrite_and_optimize(opportunity: Dict[str, Any], transformation_type: str, client: MockGeminiClient) -> str:
+async def rewrite_and_optimize(opportunity: Dict[str, Any], transformation_type: str, agent: GeminiAgent) -> str:
     """Uses Gemini to rewrite the snippet into a more optimized HTML format."""
     term, current_snippet, target_url = opportunity['term'], opportunity['current_snippet'], opportunity['target_url']
     
@@ -95,17 +68,22 @@ async def rewrite_and_optimize(opportunity: Dict[str, Any], transformation_type:
     prompt = (
         f'The competitor snippet for "{term}" is: "{current_snippet}". '
         f'Rewrite this to be more concise (under 60 words) and format it as a clean HTML bulleted list, '
-        f'suitable for injection into {target_url}. Return ONLY the <ul> or <ol> HTML block.'
+        f'suitable for injection into {target_url}. Return ONLY the <ul> or <ol> HTML block. '
+        "Do not include markdown or explanations."
     )
-    return await client.generate_text(prompt)
+    # Using real Gemini Agent
+    response = await agent.generate_content(prompt)
+    return response.strip().replace("```html", "").replace("```", "").strip()
 
 # --- Main Prefect Flow ---
 
 @flow(name="Engine 6: SERP Heist", log_prints=True)
 async def serp_heist_flow(project_id: int):
     """Orchestrates the SERP Heist engine to steal Featured Snippets."""
-    print(f"--- Starting Engine 6: SERP Heist for project_id={project_id} ---")
-    ai_client = MockGeminiClient()
+    print(f"--- Starting Engine 6: SERP Heist (REAL AI) for project_id={project_id} ---")
+    
+    # Use real global agent
+    ai_agent = gemini_agent
 
     opportunities = find_snippet_opportunities(project_id)
     if not opportunities:
@@ -116,7 +94,7 @@ async def serp_heist_flow(project_id: int):
     for opp in opportunities:
         transformation = analyze_snippet_format(opp)
         if transformation == "PARAGRAPH_TO_LIST":
-            new_html_asset = await rewrite_and_optimize(opp, transformation, ai_client)
+            new_html_asset = await rewrite_and_optimize(opp, transformation, ai_agent)
             generated_assets.append({
                 "term": opp['term'],
                 "target_url": opp['target_url'],

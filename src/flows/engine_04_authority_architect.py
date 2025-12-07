@@ -2,45 +2,7 @@
 import asyncio
 import json
 from prefect import flow, task
-
-# --- Mock Clients for Development ---
-
-class MockGeminiClient:
-    """Mocks the Gemini AI client for clustering and brief generation."""
-    def __init__(self):
-        print("MockGeminiClient initialized.")
-
-    async def generate_text(self, prompt: str) -> str:
-        """Simulates a call to the Gemini API, returning structured JSON."""
-        print("\n--- Task: Calling Gemini (Mock) ---")
-        print("Received a prompt for structured JSON output...")
-        await asyncio.sleep(1.5)  # Simulate a more expensive API call
-
-        if "group them into 5-10 distinct semantic clusters" in prompt:
-            return """
-{
-  "General & Preventive": ["dental check-up", "teeth cleaning", "cavity filling", "family dentist"],
-  "Cosmetic Dentistry": ["teeth whitening", "veneers cost", "smile makeover", "cosmetic dentist near me"],
-  "Invisalign & Orthodontics": ["invisalign cost", "invisalign vs braces", "clear aligners", "adult braces"],
-  "Restorative & Implants": ["dental implants cost", "single tooth implant", "all-on-4", "crowns and bridges"],
-  "Emergency Services": ["emergency dentist", "toothache relief", "broken tooth fix", "24/7 dental care"],
-  "Insurance & Payments": ["dentist accepts medicare", "dental insurance ppo", "financing options", "payment plans"]
-}
-"""
-        elif "generate a Content Pillar Blueprint" in prompt:
-            return """
-{
-  "pillar_title": "The Ultimate Guide to Invisalign: A Modern Path to a Perfect Smile",
-  "support_titles": [
-    "Invisalign vs. Traditional Braces: Which is Right for You?",
-    "A Day in the Life: What to Expect During Your Invisalign Treatment",
-    "Financing Your Smile: Understanding Invisalign Costs and Insurance"
-  ],
-  "target_word_count": 4000,
-  "internal_link_strategy": "The main pillar page will link out to each of the three support articles. In turn, existing pages on 'Cosmetic Dentistry' and 'General Dentistry' will link back to this new pillar to establish its authority."
-}
-"""
-        return "{}"
+from src.utils.gemini_client import gemini_agent, GeminiAgent
 
 # --- Helper Functions for Mock Data ---
 
@@ -79,7 +41,7 @@ def fetch_competitor_keywords() -> list[str]:
     return keywords
 
 @task
-async def create_semantic_clusters(all_keywords: list[str], client: MockGeminiClient) -> dict:
+async def create_semantic_clusters(all_keywords: list[str], agent: GeminiAgent) -> dict:
     """Uses Gemini to group a large list of keywords into semantic clusters."""
     print("--- Task: Creating Semantic Clusters via Gemini ---")
     keyword_sample = ", ".join(list(set(all_keywords))[:40])
@@ -87,15 +49,19 @@ async def create_semantic_clusters(all_keywords: list[str], client: MockGeminiCl
         "Act as an expert NLP Strategist. Take this list of keywords and group them into 5-10 distinct "
         "semantic clusters (e.g., 'Pricing', 'Integrations'). "
         f"Keyword list sample: [{keyword_sample}]. "
-        "Return the result strictly as a JSON object: { 'cluster_name': ['kw1', 'kw2', ...], ... }."
+        "Return the result strictly as a valid JSON object: { 'cluster_name': ['kw1', 'kw2', ...], ... }. "
+        "Do not include Markdown formatting or code blocks."
     )
-    response = await client.generate_text(prompt)
+    # Using real Gemini Agent
+    response = await agent.generate_content(prompt)
     try:
-        cluster_map = json.loads(response)
+        # Clean response if it contains markdown code blocks
+        clean_response = response.replace("```json", "").replace("```", "").strip()
+        cluster_map = json.loads(clean_response)
         print(f"Successfully parsed JSON and created {len(cluster_map)} semantic clusters.")
         return cluster_map
     except json.JSONDecodeError:
-        print("ERROR: Failed to decode JSON from Gemini's clustering response.")
+        print(f"ERROR: Failed to decode JSON from Gemini's clustering response. Raw: {response}")
         return {}
 
 @task
@@ -120,19 +86,22 @@ def diagnose_topic_gaps(cluster_map: dict, sitemap: list[str]) -> list[str]:
     return critical_gaps
 
 @task
-async def generate_pillar_brief(missing_cluster: str, client: MockGeminiClient) -> dict:
+async def generate_pillar_brief(missing_cluster: str, agent: GeminiAgent) -> dict:
     """Generates a JSON content pillar blueprint for a missing topic."""
     print(f"--- Task: Generating Pillar Brief for '{missing_cluster}' ---")
     prompt = (
         f"Based on the missing topic cluster '{missing_cluster}', generate a Content Pillar Blueprint. "
-        'Output strictly a JSON object with fields: "pillar_title" (The Hub), "support_titles" '
-        ' (a list of 3 spokes), "target_word_count", and "internal_link_strategy".'
+        'Output strictly a valid JSON object with fields: "pillar_title" (The Hub), "support_titles" '
+        ' (a list of 3 spokes), "target_word_count", and "internal_link_strategy". '
+        "Do not include Markdown formatting or code blocks."
     )
-    response = await client.generate_text(prompt)
+    # Using real Gemini Agent
+    response = await agent.generate_content(prompt)
     try:
-        return json.loads(response)
+        clean_response = response.replace("```json", "").replace("```", "").strip()
+        return json.loads(clean_response)
     except json.JSONDecodeError:
-        print("ERROR: Failed to decode JSON for pillar brief.")
+        print(f"ERROR: Failed to decode JSON for pillar brief. Raw: {response}")
         return {}
 
 # --- Main Prefect Flow ---
@@ -140,11 +109,13 @@ async def generate_pillar_brief(missing_cluster: str, client: MockGeminiClient) 
 @flow(name="Engine 4: Authority Architect", log_prints=True)
 async def authority_architect_flow():
     """Orchestrates the Authority Architect engine to find and plan for content gaps."""
-    print("--- Starting Engine 4: Authority Architect Flow ---")
-    ai_client = MockGeminiClient()
+    print("--- Starting Engine 4: Authority Architect Flow (REAL AI) ---")
+    
+    # Use the real global agent
+    ai_agent = gemini_agent
     
     keywords = fetch_competitor_keywords()
-    cluster_map = await create_semantic_clusters(keywords, ai_client)
+    cluster_map = await create_semantic_clusters(keywords, ai_agent)
     
     if not cluster_map:
         print("Flow terminating: Semantic clustering failed.")
@@ -160,7 +131,7 @@ async def authority_architect_flow():
     first_gap = gaps[0]
     print(f"\n[ATTACK PLAN] Generating content pillar blueprint for first gap: '{first_gap}'")
     
-    pillar_blueprint = await generate_pillar_brief(first_gap, ai_client)
+    pillar_blueprint = await generate_pillar_brief(first_gap, ai_agent)
     
     if pillar_blueprint:
         print("\n--- FINAL OUTPUT: PILLAR BLUEPRINT ---")

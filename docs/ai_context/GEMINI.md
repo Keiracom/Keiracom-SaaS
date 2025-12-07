@@ -57,9 +57,9 @@
 **Goal:** Transform the minimal terminal UI into the "Hedge Fund" analytics dashboard (User Design).
 
 1.  **Engine Upgrade (Phase 1):**
-    *   [ ] Upgrade Engine 4 (Authority Architect) to Real AI.
-    *   [ ] Upgrade Engine 5 (Cannibalization) to Real AI.
-    *   [ ] Upgrade Engine 6 (SERP Heist) to Real AI.
+    *   [x] Upgrade Engine 4 (Authority Architect) to Real AI.
+    *   [x] Upgrade Engine 5 (Cannibalization) to Real AI.
+    *   [x] Upgrade Engine 6 (SERP Heist) to Real AI.
 
 2.  **Dashboard Redesign (Phase 2):**
     *   [ ] **Layout:** Multi-panel grid layout (Report Config, Alerts, Charts).
