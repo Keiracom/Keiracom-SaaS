@@ -97,3 +97,25 @@ Keiracom is the **'Bloomberg Terminal for SEO.'** We act as an Automated Hedge F
     - `$CRAFT` (Artisan/Earth)
     - `$BOLD` (High Energy)
     - `$CLINIC` (Medical)
+
+## 6. IPO Engine Architecture (The Launchpad)
+> **Goal:** Automate the "0 to 1" asset creation process with zero manual intervention.
+
+### 6.1 Workflow Logic (The Vercel-Namecheap Bridge)
+1.  **Ticker Selection:** User selects domain -> API Checks Availability (Namecheap/Vercel).
+2.  **Asset Acquisition:** API Purchases Domain -> Registers DNS (Vercel Domains API).
+3.  **Shell Provisioning:**
+    - Clones `keiracom-template-v1` repo to new GitHub repo `client-[ticker]`.
+    - Configures `next.config.js` with client metadata.
+4.  **Deployment:**
+    - Connects new repo to Vercel Project.
+    - Assigns purchased domain to project.
+    - Triggers initial build.
+5.  **Seed Injection:**
+    - Triggers **Engine 4 (Authority)** to generate 5 core pages.
+    - Pushes content to new Repo/CMS.
+
+### 6.2 Custodial Security
+- **DNS Control:** Keiracom maintains `A` and `CNAME` records.
+- **SSL:** Auto-provisioned by Vercel.
+- **Transfer:** On request, domain transfer lock is removed and Auth Code generated.

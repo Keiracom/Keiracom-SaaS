@@ -39,18 +39,39 @@
 | **3. Logic Def** | 3.5 DB Upgrade | **✅ DONE** | `models.py` verified (96 lines). |
 | **🚧 PHASE III: RECOVERY & LOGIC** | | | **Focus: Fix API -> Build Engine 3** |
 | **Recovery** | **5.5 API Repair** | **✅ DONE** | Rebuild `main.py` entry point. |
-| **Real Engines** | 4.1 Real Engine 3 | ✅ CODE COMPLETE | API Connected. Waiting for Keys. |
-| | 4.2 Real Engine 4 | ✅ CODE COMPLETE | Logic verified. 98 Gaps Found. |
-| | 4.2a Debug API Client | ✅ DONE | Client fixed, logic verified. |
-| | 4.3 Real Engine 1 | 🔴 Pending | Logic: Revenue Shield. |
+| **Real Engines** | 4.1 Real Engine 3 | **✅ LIVE** | Connected to Real Gemini AI + API Key Fixed. |
+| | 4.2 Real Engine 2 | **✅ LIVE** | Freshness Attack connected to Real Gemini AI. |
+| | 4.3 Real Engine 1 | **✅ LIVE** | Revenue Shield (DataForSEO logic valid). |
+| | 4.4 Engines 4-6 | ⚠️ PROTOTYPE | Still using Mock AI. Needs Upgrade. |
 | **🚀 PHASE IV: ASSET MGMT & SAAS** | | | **Focus: Auth -> Payments -> Dashboard** |
-| **SaaS Skeleton** | 4.0 Auth Setup | 🚀 NEXT | Clerk Integration + API Security. |
+| **SaaS Skeleton** | 4.0 Auth Setup | **✅ DONE** | Clerk Integration + API Security + Vercel Env Vars. |
+| **Deployment** | 4.1 Vercel Deploy | **✅ DONE** | Site is LIVE (v3.0.1-beta). |
+| | 4.2 Sentry Config | **✅ DONE** | Error tracking active (API v8). |
 | **Asset API** | 1.1 DB Seeding | **✅ DONE** | `strike_data.json` loaded. |
 | **Asset API** | 1.2 API Endpoint | **✅ DONE** | `GET /api/v1/assets/strike-list`. |
-| **IPO Engine** | 1.3 Vercel Client | **✅ DONE** | `src/utils/vercel_client.py` for Domain Buy. |
-| **IPO Engine** | 1.4 IPO API | **✅ DONE** | `POST /api/v1/ipo/purchase` & Provisioning. |
-| **API Upgrade** | 5.4 Data Grid Endpoints | 🚀 NEXT | Endpoints for frontend tables. |
-| **UI** | 6.8 Data Grid | 🔴 Pending | Reusable Table Component. |
-| **UI** | 6.9 Connect Engine 3 | 🔴 Pending | Live Data Display. |
-| **❓ UNVERIFIED (Sales Auto)** | | | **Status: Code exists but likely Shells.** |
-| **8. Sales Auto** | 8.1 - 8.5 All Tasks | ⚠️ SHELL | Audit pending. Do not use yet. |
+| **UI Upgrade** | 6.0 Data Grid | **✅ DONE** | Basic Strike List Table active. |
+| **UI Upgrade** | 6.1 Rich Dashboard | 🚀 NEXT | **The "Hedge Fund" Analytics Interface.** |
+| **UI Upgrade** | 6.2 Multi-Panel | 🔴 Pending | Cannibalization, Gaps, Content Tracker Panels. |
+
+## 4. Roadmap: Phase V - The Analytics Dashboard (Current Focus)
+**Goal:** Transform the minimal terminal UI into the "Hedge Fund" analytics dashboard (User Design).
+
+1.  **Engine Upgrade (Phase 1):**
+    *   [ ] Upgrade Engine 4 (Authority Architect) to Real AI.
+    *   [ ] Upgrade Engine 5 (Cannibalization) to Real AI.
+    *   [ ] Upgrade Engine 6 (SERP Heist) to Real AI.
+
+2.  **Dashboard Redesign (Phase 2):**
+    *   [ ] **Layout:** Multi-panel grid layout (Report Config, Alerts, Charts).
+    *   [ ] **Charts:** Integrate Recharts/Chart.js for "Content Activity" & "Winning Concept".
+    *   [ ] **Components:**
+        *   `ReportConfigModule`: Domain selection.
+        *   `CannibalizationAlert`: "High Value Alert" cards.
+        *   `StrategicGapChart`: Bar chart matching design.
+        *   `InsightFeed`: List of AI recommendations.
+        *   `KeywordValuation`: Data table.
+        *   `CompetitorRadar`: Competitor tracking.
+
+3.  **Real Data Integration (Phase 3):**
+    *   [ ] Connect DataForSEO to all Engine Flows.
+    *   [ ] Integrate Google Search Console API.
