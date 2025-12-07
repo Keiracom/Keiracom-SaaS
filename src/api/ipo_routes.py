@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from typing import Optional
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from src.utils.db import get_session
+from src.utils.database import get_db as get_session
 from src.utils.models import Project
 from src.utils.auth import get_current_user
 from src.utils.vercel_client import vercel_client

@@ -34,9 +34,9 @@
 ## 4. Quality Assurance
 | Item | Status | Keiracom Context |
 | :--- | :--- | :--- |
-| **Unit Tests** | 🚧 WIP | `tests/` folder exists (`test_api.py`), but coverage is likely low. |
-| **CI Pipelne** | 🔴 TODO | Tests do not run automatically on commit. |
-| **Linting** | 🚧 WIP | `eslint` installed in frontend. Need to enforce in CI. |
+| **Unit Tests** | ✅ DONE | `tests/` active. `test_main.py` checks API health. |
+| **CI Pipelne** | ✅ DONE | GitHub Actions (`.github/workflows/ci.yml`) runs tests & lint on push. |
+| **Linting** | 🚧 WIP | Frontend linted in CI (`eslint`). Backend linting (`ruff`) not yet enforced. |
 
 ## 5. Security
 | Item | Status | Keiracom Context |
