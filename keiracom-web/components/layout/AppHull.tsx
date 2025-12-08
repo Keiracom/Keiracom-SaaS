@@ -159,7 +159,7 @@ export function AppHull({ children }: AppHullProps) {
 
                     <div className="flex items-center gap-4">
                         {/* Search mock */}
-                        <div className="relativeHidden md:flex items-center bg-[#0A0A0A] border border-[#1F1F1F] rounded-full px-3 py-1.5 w-64 transition-all focus-within:border-[#333] focus-within:w-72">
+                        <div className="relative hidden md:flex items-center bg-[#0A0A0A] border border-[#1F1F1F] rounded-full px-3 py-1.5 w-64 transition-all focus-within:border-[#333] focus-within:w-72">
                             <Search size={14} className="text-[#666666] mr-2" />
                             <input
                                 type="text"

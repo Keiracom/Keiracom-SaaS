@@ -12,11 +12,11 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const mockAssets = [
-    { target: "Dental Implants Guide", status: "optimized", engine: "Authority Architect (E4)", score: 98, last_action: "2m ago" },
-    { target: "Cost of Teeth Whitening", status: "conflict", engine: "Cannibalization (E5)", score: 45, last_action: "Detected Now" },
-    { target: "Emergency Dentist", status: "processing", engine: "Strike Distance (E3)", score: 72, last_action: "Optimizing..." },
-    { target: "Invisalign vs Braces", status: "optimized", engine: "Freshness (E2)", score: 92, last_action: "1h ago" },
-    { target: "Local SEO Tips", status: "stolen", engine: "SERP Heist (E6)", score: 100, last_action: "Snippet Secured" },
+    { target: "Dental Implants Guide", status: "optimized", engine: "Authority (E4)", score: 98, last_action: "Blueprint Generated" },
+    { target: "Cost of Teeth Whitening", status: "conflict", engine: "Cannibalization (E5)", score: 45, last_action: "Redirect Proposed" },
+    { target: "Emergency Dentist FAQ", status: "stolen", engine: "SERP Heist (E6)", score: 100, last_action: "Snippet Secured" },
+    { target: "Invisalign Reviews 2024", status: "processing", engine: "Freshness (E2)", score: 72, last_action: "Injecting QoS..." },
+    { target: "Root Canal Costs", status: "idle", engine: "Strike Dist. (E3)", score: 60, last_action: "Monitoring" },
 ]
 
 export function AssetsDataGrid() {
