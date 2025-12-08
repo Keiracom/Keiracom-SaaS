@@ -32,13 +32,13 @@ export default function HeistPage() {
     return (
         <AppHull>
             <div className="max-w-7xl mx-auto p-6">
-                <h1 className="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-2 mb-6">
+                <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2 mb-6">
                     <Ghost className="text-purple-500" /> SERP Heist (Competitor Pwnage)
                 </h1>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Console */}
-                    <div className="bg-black rounded-lg p-4 font-mono text-xs text-green-500 h-[500px] overflow-y-auto">
+                    <div className="bg-black rounded-lg p-4 font-mono text-xs text-green-500 h-[500px] overflow-y-auto shadow-md">
                         {consoleOutput.map((line, i) => (
                             <div key={i} className={line.includes("!WARN!") ? "text-yellow-500" : line.includes("COMPLETE") ? "text-purple-500 font-bold" : line.includes("root@") ? "text-gray-500" : ""}>
                                 {line.replace("!WARN! ", "")}
@@ -53,15 +53,15 @@ export default function HeistPage() {
                     </div>
 
                     {/* Targets */}
-                    <div className="bg-white dark:bg-dd-panel border border-dd-light-border dark:border-dd-border rounded-lg overflow-hidden h-[500px] flex flex-col">
-                        <div className="px-4 py-2 bg-gray-50 dark:bg-gray-800 border-b border-dd-light-border dark:border-dd-border font-bold text-xs uppercase text-gray-500">
+                    <div className="bg-white border border-dd-light-border rounded-lg overflow-hidden h-[500px] flex flex-col shadow-sm">
+                        <div className="px-4 py-2 bg-gray-50 border-b border-dd-light-border font-bold text-xs uppercase text-gray-500">
                             Active Targets
                         </div>
-                        <div className="divide-y divide-gray-100 dark:divide-gray-700 overflow-y-auto flex-1">
+                        <div className="divide-y divide-gray-100 overflow-y-auto flex-1">
                             {TARGETS.map((t, i) => (
-                                <div key={i} className="p-3 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                <div key={i} className="p-3 hover:bg-gray-50">
                                     <div className="flex items-center justify-between mb-1">
-                                        <div className="font-bold text-sm text-gray-900 dark:text-white">{t.domain}</div>
+                                        <div className="font-bold text-sm text-gray-900">{t.domain}</div>
                                         <span className={`px-2 py-0.5 rounded text-xs font-bold ${t.status === 'SUCCESS' ? 'bg-green-100 text-green-600' :
                                                 t.status === 'WEAK SNIPPET' ? 'bg-red-100 text-red-600' :
                                                     t.status === 'SCANNING' ? 'bg-blue-100 text-blue-600 animate-pulse' :
