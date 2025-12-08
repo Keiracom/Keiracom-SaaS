@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authority Architect - Keiracom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dd: {
+                            purple: '#632CA6',
+                            dark: '#1A1A1A',
+                            panel: '#242424',
+                            border: '#363636',
+                            text: '#DADADA',
+                            lightBg: '#F3F4F6',
+                            lightPanel: '#FFFFFF',
+                            lightBorder: '#E5E7EB',
+                            lightText: '#1F2937'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="bg-dd-lightBg dark:bg-gray-900 text-dd-lightText dark:text-dd-text font-sans h-screen flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <header class="flex h-12 bg-white dark:bg-dd-dark border-b border-dd-lightBorder dark:border-dd-border">
+        <div class="w-14 flex items-center justify-center bg-[#50248F]">
+            <i data-lucide="activity" class="text-white" width="24"></i>
+        </div>
+        <div class="flex-1 flex items-center justify-between px-4">
+            <div class="flex items-center gap-6">
+                <span class="font-bold text-gray-900 dark:text-white">KEIRACOM</span>
+                <a href="index.html"
+                    class="px-3 py-1.5 rounded text-xs font-semibold hover:bg-gray-100 dark:hover:bg-white/10">Dashboards</a>
+            </div>
+            <button onclick="document.documentElement.classList.toggle('dark')"
+                class="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-white/10">
+                <i data-lucide="sun" class="hidden dark:block" width="16"></i>
+                <i data-lucide="moon" class="block dark:hidden" width="16"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar -->
+        <aside
+            class="w-14 bg-white dark:bg-dd-dark border-r border-dd-lightBorder dark:border-dd-border flex flex-col items-center py-4 gap-4">
+            <a href="index.html" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-white/10 text-gray-400"><i
+                    data-lucide="layout-grid" width="20"></i></a>
+            <div class="w-8 h-px bg-gray-200 dark:bg-dd-border"></div>
+            <a href="engine-3.html" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-white/10 text-gray-400"><i
+                    data-lucide="zap" width="20"></i></a>
+            <a href="engine-4.html" class="p-2 rounded bg-dd-purple/10 text-dd-purple"><i data-lucide="git-branch"
+                    width="20"></i></a>
+            <a href="engine-5.html" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-white/10 text-gray-400"><i
+                    data-lucide="refresh-ccw" width="20"></i></a>
+            <a href="engine-6.html" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-white/10 text-gray-400"><i
+                    data-lucide="ghost" width="20"></i></a>
+        </aside>
+
+        <!-- Main -->
+        <main class="flex-1 p-6 overflow-y-auto">
+            <div class="max-w-7xl mx-auto">
+                <h1 class="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-2 mb-6">
+                    <i data-lucide="git-branch" class="text-purple-500"></i> Authority Architect
+                </h1>
+
+                <div class="grid grid-cols-3 gap-6">
+                    <!-- Topic Map Visualization -->
+                    <div
+                        class="col-span-2 bg-white dark:bg-dd-panel border border-dd-lightBorder dark:border-dd-border rounded-lg p-6">
+                        <h3 class="font-bold mb-4">Topic Cluster Graph</h3>
+                        <div
+                            class="h-96 bg-gray-50 dark:bg-gray-800 rounded flex items-center justify-center text-gray-500">
+                            SVG Network Graph Would Render Here
+                        </div>
+                    </div>
+
+                    <!-- Topical Voids -->
+                    <div
+                        class="bg-white dark:bg-dd-panel border border-dd-lightBorder dark:border-dd-border rounded-lg p-6">
+                        <h3 class="font-bold mb-4">Topical Voids</h3>
+                        <div class="space-y-3">
+                            <div
+                                class="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded">
+                                <div class="font-semibold text-sm">Technical SEO Audit</div>
+                                <div class="text-xs text-gray-500 mt-1">High Priority</div>
+                                <button class="mt-2 bg-purple-600 text-white text-xs px-3 py-1 rounded">Generate
+                                    Brief</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLo', () => { lucide.createIcons(); });
+    </script>
+</body>
+
+</html>

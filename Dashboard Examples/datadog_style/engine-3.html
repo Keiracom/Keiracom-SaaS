@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strike Distance - Keiracom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dd: {
+                            purple: '#632CA6',
+                            dark: '#1A1A1A',
+                            panel: '#242424',
+                            border: '#363636',
+                            text: '#DADADA',
+                            lightBg: '#F3F4F6',
+                            lightPanel: '#FFFFFF',
+                            lightBorder: '#E5E7EB',
+                            lightText: '#1F2937'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="bg-dd-lightBg dark:bg-gray-900 text-dd-lightText dark:text-dd-text font-sans h-screen flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <header class="flex h-12 bg-white dark:bg-dd-dark border-b border-dd-lightBorder dark:border-dd-border">
+        <div class="w-14 flex items-center justify-center bg-[#50248F]">
+            <i data-lucide="activity" class="text-white" width="24"></i>
+        </div>
+        <div class="flex-1 flex items-center justify-between px-4">
+            <span class="font-bold text-gray-900 dark:text-white">KEIRACOM</span>
+            <button onclick="document.documentElement.classList.toggle('dark')" class="p-1.5 rounded">
+                <i data-lucide="sun" class="hidden dark:block" width="16"></i>
+                <i data-lucide="moon" class="block dark:hidden" width="16"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar -->
+        <aside
+            class="w-14 bg-white dark:bg-dd-dark border-r border-dd-lightBorder dark:border-dd-border flex flex-col items-center py-4 gap-4">
+            <a href="index.html" class="p-2 text-gray-400"><i data-lucide="layout-grid" width="20"></i></a>
+            <div class="w-8 h-px bg-gray-200"></div>
+            <a href="engine-1.html" class="p-2 text-gray-400"><i data-lucide="shield" width="20"></i></a>
+            <a href="engine-2.html" class="p-2 text-gray-400"><i data-lucide="crosshair" width="20"></i></a>
+            <a href="engine-3.html" class="p-2 bg-yellow-100 dark:bg-yellow-900/20 text-yellow-600"><i data-lucide="zap"
+                    width="20"></i></a>
+            <a href="engine-4.html" class="p-2 text-gray-400"><i data-lucide="git-branch" width="20"></i></a>
+            <a href="engine-5.html" class="p-2 text-gray-400"><i data-lucide="alert-triangle" width="20"></i></a>
+            <a href="engine-6.html" class="p-2 text-gray-400"><i data-lucide="ghost" width="20"></i></a>
+        </aside>
+
+        <!-- Main -->
+        <main class="flex-1 p-6 overflow-y-auto">
+            <div class="max-w-7xl mx-auto">
+                <h1 class="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-2 mb-2">
+                    <i data-lucide="zap" class="text-yellow-500"></i> Strike Distance Sniper
+                </h1>
+                <p class="text-sm text-gray-500 mb-6">Keywords ranking #11-20 ready to hit Page 1</p>
+
+                <!-- KPI Cards -->
+                <div class="grid grid-cols-4 gap-3 mb-6">
+                    <div
+                        class="bg-white dark:bg-dd-panel border border-dd-lightBorder dark:border-dd-border rounded p-3">
+                        <div class="text-xs text-gray-500 uppercase font-bold">Opportunities</div>
+                        <div class="text-3xl font-bold text-yellow-500">12</div>
+                        <div class="text-xs text-gray-500">Keywords in range</div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-dd-panel border border-dd-lightBorder dark:border-dd-border rounded p-3">
+                        <div class="text-xs text-gray-500 uppercase font-bold">Avg. Position</div>
+                        <div class="text-3xl font-bold text-gray-600 dark:text-gray-300">14.2</div>
+                        <div class="text-xs text-gray-500">Current rank</div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-dd-panel border border-dd-lightBorder dark:border-dd-border rounded p-3">
+                        <div class="text-xs text-gray-500 uppercase font-bold">Est. Traffic Gain</div>
+                        <div class="text-3xl font-bold text-green-500">+3.2k</div>
+                        <div class="text-xs text-gray-500">If moved to Page 1</div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-dd-panel border border-dd-lightBorder dark:border-dd-border rounded p-3">
+                        <div class="text-xs text-gray-500 uppercase font-bold">Quick Wins</div>
+                        <div class="text-3xl font-bold text-purple-500">5</div>
+                        <div class="text-xs text-gray-500">Ready to optimize</div>
+                    </div>
+                </div>
+
+                <!-- Sample Strike Distance Card -->
+                <div class="bg-white dark:bg-dd-panel border border-dd-lightBorder dark:border-dd-border rounded">
+                    <div class="px-4 py-3 border-b bg-gray-50 dark:bg-gray-800">
+                        <h3 class="font-bold text-sm">Strike Distance Opportunities</h3>
+                    </div>
+
+                    <div class="p-4 space-y-4">
+                        <!-- Example -->
+                        <div class="border-b pb-4">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <div class="font-mono font-bold text-sm mb-1">"keyword research tools"</div>
+                                    <div class="text-xs text-gray-500">Rank: #13 • 890 visits/mo potential • Move up 8
+                                        positions to #5</div>
+                                </div>
+                                <button onclick="alert('Fix modal would open here')"
+                                    class="bg-dd-purple text-white px-3 py-1 rounded text-xs font-bold">View
+                                    Fixes</button>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-gray-800 rounded p-3">
+                                <div class="text-xs font-bold mb-2">3-Vector Analysis</div>
+                                <div class="space-y-2 text-xs">
+                                    <div class="flex items-center gap-2">
+                                        <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                            <div class="bg-yellow-500 h-1.5 rounded-full" style="width: 60%"></div>
+                                        </div>
+                                        <span class="text-yellow-500 font-bold">60%</span>
+                                        <span class="text-gray-500">Content Depth</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                            <div class="bg-red-500 h-1.5 rounded-full" style="width: 0%"></div>
+                                        </div>
+                                        <span class="text-red-500 font-bold">0%</span>
+                                        <span class="text-gray-500">Schema Markup</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                            <div class="bg-green-500 h-1.5 rounded-full" style="width: 80%"></div>
+                                        </div>
+                                        <span class="text-green-500 font-bold">80%</span>
+                                        <span class="text-gray-500">Title Tag</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>document.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });</script>
+</body>
+
+</html>

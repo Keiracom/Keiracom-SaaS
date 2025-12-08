@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERP Heist - Keiracom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dd: {
+                            purple: '#632CA6',
+                            dark: '#1A1A1A',
+                            panel: '#242424',
+                            border: '#363636',
+                            text: '#DADADA',
+                            lightBg: '#F3F4F6',
+                            lightPanel: '#FFFFFF',
+                            lightBorder: '#E5E7EB',
+                            lightText: '#1F2937'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="bg-dd-lightBg dark:bg-gray-900 text-dd-lightText dark:text-dd-text font-sans h-screen flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <header class="flex h-12 bg-white dark:bg-dd-dark border-b border-dd-lightBorder dark:border-dd-border">
+        <div class="w-14 flex items-center justify-center bg-[#50248F]">
+            <i data-lucide="activity" class="text-white" width="24"></i>
+        </div>
+        <div class="flex-1 flex items-center justify-between px-4">
+            <span class="font-bold text-gray-900 dark:text-white">KEIRACOM</span>
+            <button onclick="document.documentElement.classList.toggle('dark')" class="p-1.5 rounded">
+                <i data-lucide="sun" class="hidden dark:block" width="16"></i>
+                <i data-lucide="moon" class="block dark:hidden" width="16"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar -->
+        <aside
+            class="w-14 bg-white dark:bg-dd-dark border-r border-dd-lightBorder dark:border-dd-border flex flex-col items-center py-4 gap-4">
+            <a href="index.html" class="p-2 text-gray-400"><i data-lucide="layout-grid" width="20"></i></a>
+            <div class="w-8 h-px bg-gray-200"></div>
+            <a href="engine-3.html" class="p-2 text-gray-400"><i data-lucide="zap" width="20"></i></a>
+            <a href="engine-4.html" class="p-2 text-gray-400"><i data-lucide="git-branch" width="20"></i></a>
+            <a href="engine-5.html" class="p-2 text-gray-400"><i data-lucide="refresh-ccw" width="20"></i></a>
+            <a href="engine-6.html" class="p-2 bg-purple-100 dark:bg-purple-900/20 text-purple-600"><i
+                    data-lucide="ghost" width="20"></i></a>
+        </aside>
+
+        <!-- Main -->
+        <main class="flex-1 p-6 overflow-y-auto">
+            <div class="max-w-7xl mx-auto">
+                <h1 class="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-2 mb-6">
+                    <i data-lucide="ghost" class="text-purple-500"></i> SERP Heist (Competitor Pwnage)
+                </h1>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <!-- Console -->
+                    <div class="bg-black rounded-lg p-4 font-mono text-xs text-green-500 h-96 overflow-y-auto">
+                        <div class="text-gray-500">root@keiracom-heist:~# ./run_attack.sh target=ahrefs.com</div>
+                        <div>[+] Initializing Heist Protocols...</div>
+                        <div>[+] Target identified: ahrefs.com (DR 92)</div>
+                        <div>[+] Scanning SERPs for weak snippets...</div>
+                        <div class="text-yellow-500">[!] Found weakness: 'how to do keyword research' (Pos 1)</div>
+                        <div>[+] Extracting structure... DONE</div>
+                        <div>[+] Generating superior content (Gemini Pro)...</div>
+                        <div class="text-purple-500 font-bold">[✓] GENERATION COMPLETE</div>
+                        <div class="animate-pulse">_</div>
+                    </div>
+
+                    <!-- Targets -->
+                    <div
+                        class="bg-white dark:bg-dd-panel border border-dd-lightBorder dark:border-dd-border rounded-lg overflow-hidden">
+                        <div
+                            class="px-4 py-2 bg-gray-50 dark:bg-gray-800 border-b font-bold text-xs uppercase text-gray-500">
+                            Active Targets</div>
+                        <div class="divide-y">
+                            <div class="p-3 flex items-center justify-between">
+                                <span class="font-bold">ahrefs.com</span>
+                                <span
+                                    class="bg-green-100 text-green-600 px-2 py-0.5 rounded text-xs font-bold">SUCCESS</span>
+                            </div>
+                            <div class="p-3 flex items-center justify-between">
+                                <span class="font-bold">semrush.com</span>
+                                <span
+                                    class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-xs font-bold">QUEUED</span>
+                            </div>
+                            <div class="p-3 flex items-center justify-between">
+                                <span class="font-bold">moz.com</span>
+                                <span
+                                    class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-xs font-bold">QUEUED</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>document.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });</script>
+</body>
+
+</html>
