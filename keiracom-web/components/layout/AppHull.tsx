@@ -28,16 +28,10 @@ const NAV_ITEMS = [
 export function AppHull({ children }: AppHullProps) {
     const pathname = usePathname()
     const { isLoaded, isSignedIn } = useUser()
-    const [isDark, setIsDark] = useState(true)
-
-    // Sync theme with HTML class
+    // Forced Light Mode
     useEffect(() => {
-        if (isDark) {
-            document.documentElement.classList.add('dark')
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-    }, [isDark])
+        document.documentElement.classList.remove('dark')
+    }, [])
 
     const SidebarIcons = () => (
         <div className="flex flex-col items-center py-4 gap-4 w-full">
@@ -50,8 +44,8 @@ export function AppHull({ children }: AppHullProps) {
                         <Link
                             href={item.href}
                             className={`p-2 rounded transition-colors ${isActive
-                                    ? "bg-green-100 dark:bg-green-900/20 text-green-600"
-                                    : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                                ? "bg-green-100 dark:bg-green-900/20 text-green-600"
+                                : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
                                 }`}
                             title={item.label}
                         >
@@ -65,33 +59,28 @@ export function AppHull({ children }: AppHullProps) {
     )
 
     return (
-        <div className="flex flex-col h-screen overflow-hidden bg-dd-light-bg dark:bg-dd-darker text-dd-light-text dark:text-dd-text font-sans transition-colors duration-300">
+        <div className="flex flex-col h-screen overflow-hidden bg-dd-light-bg text-dd-light-text font-sans transition-colors duration-300">
             {/* Header */}
-            <header className="flex h-12 bg-white dark:bg-dd-dark border-b border-dd-light-border dark:border-dd-border shrink-0 z-20">
+            <header className="flex h-12 bg-white border-b border-dd-light-border shrink-0 z-20">
                 <div className="w-14 flex items-center justify-center bg-[#50248F]">
                     <Activity className="text-white" width={24} />
                 </div>
                 <div className="flex-1 flex items-center justify-between px-4">
                     <div className="flex items-center gap-6">
                         <div className="flex flex-col leading-none">
-                            <span className="font-bold text-gray-900 dark:text-white tracking-wide text-sm">KEIRACOM</span>
+                            <span className="font-bold text-gray-900 tracking-wide text-sm">KEIRACOM</span>
                             <span className="font-mono text-[10px] text-gray-500 font-bold">AGENCY OPS</span>
                         </div>
 
                         <nav className="hidden md:flex gap-1 text-xs font-semibold">
-                            <Link href="/dashboard" className="px-3 py-1.5 rounded bg-gray-100 dark:bg-white/10 text-gray-900 dark:text-white">
+                            <Link href="/dashboard" className="px-3 py-1.5 rounded bg-gray-100 text-gray-900">
                                 Dashboards
                             </Link>
                         </nav>
                     </div>
 
                     <div className="flex items-center gap-4 text-xs">
-                        <button
-                            onClick={() => setIsDark(!isDark)}
-                            className="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-white/10 text-gray-500 dark:text-gray-400"
-                        >
-                            {isDark ? <Sun width={16} /> : <Moon width={16} />}
-                        </button>
+
 
                         <div className="h-8 w-8 flex items-center justify-center">
                             {isLoaded && isSignedIn ? (
@@ -108,7 +97,7 @@ export function AppHull({ children }: AppHullProps) {
 
             <div className="flex flex-1 overflow-hidden">
                 {/* Desktop Sidebar */}
-                <aside className="hidden md:flex w-14 bg-white dark:bg-dd-dark border-r border-dd-light-border dark:border-dd-border flex-col items-center shrink-0 z-10">
+                <aside className="hidden md:flex w-14 bg-white border-r border-dd-light-border flex-col items-center shrink-0 z-10">
                     <SidebarIcons />
                 </aside>
 
@@ -127,7 +116,7 @@ export function AppHull({ children }: AppHullProps) {
                 </div>
 
                 {/* Main Content Area */}
-                <main className="flex-1 overflow-y-auto grid-bg-light dark:grid-bg-dark relative">
+                <main className="flex-1 overflow-y-auto grid-bg-light relative">
                     {children}
                 </main>
             </div>
